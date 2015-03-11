@@ -88,6 +88,7 @@ function keyPressed(event) {
     camera.position.z = camPosZ;
 
     //Does not work
+
     //TODO: Get this value to automatically update the value in animate?
     if(keycode == 107){
         rotation += 0.01;
