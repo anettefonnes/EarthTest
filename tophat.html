@@ -4,20 +4,20 @@
     <h1 class="mainHeader_logo"> Wolftech News </h1>
 
     <h2 class="mainHeader_clock"
-        ng-controller="clockCtrl"
+        data-ng-controller="clockCtrl"
         title="{{time | date: 'fullDate'}}">
 
             {{time | date: 'HH:mm'}}<span>{{time | date: ':ss'}}</span>
     </h2>
 
     <div class="mainHeader_user"
-        ng-show="user.show"
-        ng-cloak>
+        data-ng-show="user.show"
+        data-ng-cloak>
 
         <a href="/user" class="mainHeader_user_link">
             <div class="mainHeader_user_image"
-                ng-if="user.image"
-                ng-style="{'background-image':'url('+user.image+')'}"></div>
+                data-ng-if="user.image"
+                data-ng-style="{'background-image':'url('+user.image+')'}"></div>
 
             <h3 class="mainHeader_user_name">
                 Signed in as
@@ -25,7 +25,7 @@
             </h3>
         </a>
 
-        <a ng-click="auth.logout($event)"
+        <a data-ng-click="auth.logout($event)"
             class="mainHeader_user_signout"
             href="/"
             title="Sign out of Wolftech News">
