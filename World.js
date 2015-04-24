@@ -1,3 +1,4 @@
+"use strict";
 //This class represents the World
 /* this.Variables=
     - root ; THREE.Object3D variable that is sentered as the mid point of the world
@@ -17,8 +18,10 @@
 
 
 var World = function(){
+    this.__proto__ = Object.create(new THREE.Object3D());
+    "use strict";
     //Defines the rotation speed
-    this.rotationSpeed = 0.005;
+    this.rotationSpeed = 0.003;
     //Defines the radius on the surface
     this.rad = 100;
     //Defines the segmentation of the world
@@ -32,8 +35,8 @@ var World = function(){
     this.specularMap = 'img/water.png';
     this.specular = 'grey';
 
-    //Definitions of functions
-
+    //Define some functions
+    //Update the Sphere mesh (read: the surface) on the world
     this.updateSurface = function() {
         var sphere = new THREE.Mesh(
             new THREE.SphereGeometry(this.rad, this.seg, this.seg),
@@ -46,21 +49,17 @@ var World = function(){
             }));
         this.add(sphere);
     }
-
+    //Rotate the world by the rotation
     this.rotate = function(){
         this.rotation.y += this.rotationSpeed;
     }
-
-
-    this.addEvent = function(event)
-    {
-
-        event.quaternion.setFromEuler(
-            new THREE.Euler(0, event.longitude * (Math.PI/180), event.latitude * (Math.PI/180), "YZX"));
+    //Adds a function set by longitude and latitude, using Euler coordinates
+    this.addEvent = function(event) {
+        event.position.multiplyScalar(this.rad);
         this.add(event);
     }
+
+    //Calls update surface
     this.updateSurface();
 };
 
-
-World.prototype = new THREE.Object3D();
